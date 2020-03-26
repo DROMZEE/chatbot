@@ -8,8 +8,8 @@ q_bonjour = r"salut.*|bonjour.*|coucou.*|hello.*"
 q_ca_va = r"comment vas-tu.*|ca.*va.*|quoi de neuf.*|"
 q_nom = r"quel est ton nom.*|tu t'appelles comment.*|.*(ton) nom\??"
 q_age = r".*?ton (age|âge).*|.*?quel (age|âge).*?"
-q_chanson = r"quelle est ta chanson préférée.*|tu écoutes quoi.*|musique.*"
-q_habitation = r"tu habites où.*|tu vis où.*"
+q_chanson = r"quelle est ta chanson préférée.*|tu écoutes quoi.*|.*(musique|chanson).*(aimes?|preferes?)"
+q_habitation = r"tu (habites|vis) (où|ou).*|(.*?(ou|où) habite.*?(tu|vous).*?)|(ou|où) tu (habites|habite).*"
 q_emploi = r"tu fais quoi.*|tu travailles dans quoi.*|quel ton job.*"
 q_good_by = r"au revoir|quit|ciao|hasta la vista|à \+"
 q_meteo = r"quel temps fait-il à .*?|.*météo à .*?"
@@ -36,20 +36,29 @@ while (flag == True):
         flag = False
     elif (re.fullmatch(q_bonjour,text_user)):
         print(random.choice(msg_bot))
+
+# Comment ça va ?
     elif (re.fullmatch(q_ca_va, text_user)):
         print(random.choice(msg_ca_va))
+# quel est ton nom ?
     elif (re.fullmatch(q_nom, text_user)):
         print(random.choice(msg_nom))
+# quel age ?
     elif (re.fullmatch(q_age, text_user)):
         print(random.choice(msg_age))
+# chanson pref ?
     elif (re.fullmatch(q_chanson, text_user)):
         print(random.choice(msg_chanson))
+# habitation ?
     elif (re.fullmatch(q_habitation, text_user)):
         print(random.choice(msg_habitation))
+# job
     elif (re.fullmatch(q_emploi, text_user)):
         print(random.choice(msg_emploi))
+# météo
     elif (re.search(q_meteo, text_user)):
         text_user = re.sub(f"[{string.punctuation}]", " ", text_user)
         print(f"Il fait beau à {text_user.split()[-1]}")
+# question inconnue
     else:
         print(random.choice(msg_inconnu))
