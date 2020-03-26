@@ -22,7 +22,7 @@ q_meteo = r"quel temps fait-il à .*?|.*météo à .*?"
 
 # les output
 msg_bot = ["bonjour", "salut"]
-msg_ca_va = ["super, et vous ?", "bien, et vous ?", "très bien, merci, et vous ?"]
+msg_ca_va = ["super, et vous ?", "bien, et vous ?", "je vais bien, merci \n et vous ?", "très bien, merci \n et vous ?"]
 msg_nom = ["Cédric", "Cédric Dromzée"]
 msg_age = ["40 ans"]
 msg_chanson = ["ce qui passe à la radio"]
@@ -53,11 +53,11 @@ while (flag == True):
         text_user = input("> ")
         blob = TextBlob(text_user, analyzer=PatternAnalyzer())
         if (blob.sentiment[0] > 0.2):
-            print(random.choice(msg_super))
+            print(random.choice(msg_super), blob.sentiment[0])
         elif (blob.sentiment[0] > -0.2):
-            print(random.choice(msg_positif))
+            print(random.choice(msg_positif), blob.sentiment[0])
         else:
-            print(random.choice(msg_neutre))
+            print(random.choice(msg_neutre), blob.sentiment[0])
 # quel est ton nom ?
     elif (re.fullmatch(q_nom, text_user)):
         print(random.choice(msg_nom))
