@@ -4,17 +4,18 @@ import re
 import random
 import string
 
+# Les input
 q_bonjour = r"salut.*|bonjour.*|coucou.*|hello.*"
 q_ca_va = r"comment vas-tu.*|ca.*va.*|quoi de neuf.*|"
 q_nom = r"quel est ton nom.*|tu t'appelles comment.*|.*(ton) nom\??"
 q_age = r".*?ton (age|âge).*|.*?quel (age|âge).*?"
-q_chanson = r"quelle est ta chanson préférée.*|tu écoutes quoi.*|.*(musique|chanson).*(aimes?|preferes?)"
+q_chanson = r"tu écoutes quoi.*|.*(musique|chanson).*(aimes?|preferes?|préférée?)"
 q_habitation = r"tu (habites|vis) (où|ou).*|(.*?(ou|où) habite.*?(tu|vous).*?)|(ou|où) tu (habites|habite).*"
 q_emploi = r"tu fais quoi.*|tu travailles dans quoi.*|quel ton job.*"
 q_good_by = r"au revoir|quit|ciao|hasta la vista|à \+"
 q_meteo = r"quel temps fait-il à .*?|.*météo à .*?"
 
-
+# les output
 msg_bot = ["bonjour", "salut"]
 msg_ca_va = ["super", "bien", "très bien, merci"]
 msg_nom = ["Cédric", "Cédric Dromzée"]
