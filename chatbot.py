@@ -3,10 +3,15 @@
 import re
 import random
 import string
+# conda update --all
+#conda install -c conda-forge textblob
+from textblob import TextBlob
+#pip install -U textblob-fr
+from textblob_fr import PatternAnalyzer
 
 # Les input
 q_bonjour = r"salut.*|bonjour.*|coucou.*|hello.*"
-q_ca_va = r"comment vas-tu.*|ca.*va.*|quoi de neuf.*|"
+q_ca_va = r"comment vas-tu.*|(ça|ca).*va.*|quoi de neuf.*|"
 q_nom = r"quel est ton nom.*|tu t'appelles comment.*|.*(ton) nom\??"
 q_age = r".*?ton (age|âge).*|.*?quel (age|âge).*?"
 q_chanson = r"tu écoutes quoi.*|.*(musique|chanson).*(aimes?|preferes?|préférée?)"
@@ -17,7 +22,7 @@ q_meteo = r"quel temps fait-il à .*?|.*météo à .*?"
 
 # les output
 msg_bot = ["bonjour", "salut"]
-msg_ca_va = ["super", "bien", "très bien, merci"]
+msg_ca_va = ["super, et vous ?", "bien, et vous ?", "très bien, merci, et vous ?"]
 msg_nom = ["Cédric", "Cédric Dromzée"]
 msg_age = ["40 ans"]
 msg_chanson = ["ce qui passe à la radio"]
@@ -25,6 +30,9 @@ msg_habitation = ["Capbreton", "dans les Landes"]
 msg_emploi = ["Développeur Data IA"]
 msg_fin = ["merci pour votre visite"]
 msg_inconnu = ["posez une autre question"]
+msg_super = ["c'est cool !", "parfait"]
+msg_positif = ["demain est un autre jour"]
+msg_neutre = ["ok"]
 
 flag = True
 print("""Bienvenue sur ce bot \n Écrivez votre question : \n
@@ -41,6 +49,15 @@ while (flag == True):
 # Comment ça va ?
     elif (re.fullmatch(q_ca_va, text_user)):
         print(random.choice(msg_ca_va))
+# L'interlocuteur répond à la qustion (et toi ?)
+        text_user = input("> ")
+        blob = TextBlob(text_user, analyzer=PatternAnalyzer())
+        if (blob.sentiment[0] > 0.2):
+            print(random.choice(msg_super))
+        elif (blob.sentiment[0] > -0.2):
+            print(random.choice(msg_positif))
+        else:
+            print(random.choice(msg_neutre))
 # quel est ton nom ?
     elif (re.fullmatch(q_nom, text_user)):
         print(random.choice(msg_nom))
