@@ -53,11 +53,11 @@ while (flag == True):
         text_user = input("> ")
         blob = TextBlob(text_user, analyzer=PatternAnalyzer())
         if (blob.sentiment[0] > 0.2):
-            print(random.choice(msg_super), blob.sentiment[0])
-        elif (blob.sentiment[0] > -0.2):
-            print(random.choice(msg_positif), blob.sentiment[0])
+            print(random.choice(msg_super))
+        elif (blob.sentiment[0] < -0.2):
+            print(random.choice(msg_positif))
         else:
-            print(random.choice(msg_neutre), blob.sentiment[0])
+            print(random.choice(msg_neutre))
 # quel est ton nom ?
     elif (re.fullmatch(q_nom, text_user)):
         print(random.choice(msg_nom))
