@@ -5,9 +5,9 @@ import random
 import string
 
 q_bonjour = r"salut.*|bonjour.*|coucou.*|hello.*"
-q_ca_va = r"comment ça va.*|comment vas-tu.*|quoi de neuf.*|"
-q_nom = r"quel est ton nom.*|tu t'appelles comment.*"
-q_age = r"Quel est ton âge.*|tu as quel age.*"
+q_ca_va = r"comment vas-tu.*|ca.*va.*|quoi de neuf.*|"
+q_nom = r"quel est ton nom.*|tu t'appelles comment.*|.*(ton) nom\??"
+q_age = r".*?ton (age|âge).*|.*?quel (age|âge).*?"
 q_chanson = r"quelle est ta chanson préférée.*|tu écoutes quoi.*|musique.*"
 q_habitation = r"tu habites où.*|tu vis où.*"
 q_emploi = r"tu fais quoi.*|tu travailles dans quoi.*|quel ton job.*"
@@ -16,7 +16,7 @@ q_meteo = r"quel temps fait-il à .*?|.*météo à .*?"
 
 
 msg_bot = ["bonjour", "salut"]
-msg_ca_va = ["super", "bien"]
+msg_ca_va = ["super", "bien", "très bien, merci"]
 msg_nom = ["Cédric", "Cédric Dromzée"]
 msg_age = ["40 ans"]
 msg_chanson = ["ce qui passe à la radio"]
